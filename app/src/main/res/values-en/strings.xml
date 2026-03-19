@@ -1,0 +1,63 @@
+<resources>
+    <string name="app_name">Alliot Inventory</string>
+
+    <!-- Main screen — Toolbar -->
+    <string name="toolbar_title">Alliot Inventory</string>
+    <string name="toolbar_subtitle">Inventory Management</string>
+
+    <!-- Main screen — Search -->
+    <string name="search_hint">Search by name, SKU or code…</string>
+    <string name="loading_items">Loading items…</string>
+    <string name="item_count_format">Showing %1$d of %2$d items</string>
+
+    <!-- Main screen — States -->
+    <string name="no_items_found">No items found</string>
+    <string name="retry">Retry</string>
+    <string name="error_icon_desc">Error</string>
+    <string name="empty_icon_desc">No results</string>
+
+    <!-- Detail screen — Navigation -->
+    <string name="back">Back</string>
+
+    <!-- Detail screen — Info labels -->
+    <string name="sku_internal">Internal SKU</string>
+    <string name="sku_external">External SKU</string>
+    <string name="barcode">Barcode</string>
+    <string name="label_model">Model</string>
+    <string name="label_brand">Brand</string>
+
+    <!-- Detail screen — Properties -->
+    <string name="properties">Properties</string>
+    <string name="consumable">Consumable</string>
+    <string name="repairable">Repairable</string>
+    <string name="restricted">Restricted</string>
+
+    <!-- Detail screen — Inventory -->
+    <string name="inventory_title">Inventory</string>
+    <string name="total_quantity">Total Quantity</string>
+    <string name="available_quantity">Available</string>
+
+    <!-- Detail screen — Status -->
+    <string name="active">Active</string>
+    <string name="inactive">Inactive</string>
+
+    <!-- Common -->
+    <string name="no_name">No name</string>
+    <string name="not_available">—</string>
+    <string name="sku_format">SKU: %s</string>
+    <string name="available_format">Avail: %.0f</string>
+    <string name="item_image_desc">Item image</string>
+
+    <!-- Error messages -->
+    <string name="error_unauthorized">Unauthorized. Check your API credentials.</string>
+    <string name="error_forbidden">Access denied. You don\'t have permission for this resource.</string>
+    <string name="error_not_found">Resource not found.</string>
+    <string name="error_server">Internal server error. Try again later.</string>
+    <string name="error_server_code">Server error (code %1$d)</string>
+    <string name="error_no_internet">No internet connection. Check your network.</string>
+    <string name="error_timeout">Request timed out. Please try again.</string>
+    <string name="error_connection_failed">Could not connect to the server.</string>
+    <string name="error_connection_generic">Connection error: %1$s</string>
+</resources>
+
+

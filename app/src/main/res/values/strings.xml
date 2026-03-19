@@ -1,0 +1,61 @@
+<resources>
+    <string name="app_name">Alliot Inventory</string>
+
+    <!-- Main screen — Toolbar -->
+    <string name="toolbar_title">Alliot Inventory</string>
+    <string name="toolbar_subtitle">Gestión de Inventario</string>
+
+    <!-- Main screen — Search -->
+    <string name="search_hint">Buscar por nombre, SKU o código…</string>
+    <string name="loading_items">Cargando artículos…</string>
+    <string name="item_count_format">Mostrando %1$d de %2$d artículos</string>
+
+    <!-- Main screen — States -->
+    <string name="no_items_found">No se encontraron artículos</string>
+    <string name="retry">Reintentar</string>
+    <string name="error_icon_desc">Error</string>
+    <string name="empty_icon_desc">Sin resultados</string>
+
+    <!-- Detail screen — Navigation -->
+    <string name="back">Volver</string>
+
+    <!-- Detail screen — Info labels -->
+    <string name="sku_internal">SKU Interno</string>
+    <string name="sku_external">SKU Externo</string>
+    <string name="barcode">Código de Barras</string>
+    <string name="label_model">Modelo</string>
+    <string name="label_brand">Marca</string>
+
+    <!-- Detail screen — Properties -->
+    <string name="properties">Propiedades</string>
+    <string name="consumable">Consumible</string>
+    <string name="repairable">Reparable</string>
+    <string name="restricted">Restringido</string>
+
+    <!-- Detail screen — Inventory -->
+    <string name="inventory_title">Inventario</string>
+    <string name="total_quantity">Cantidad Total</string>
+    <string name="available_quantity">Disponible</string>
+
+    <!-- Detail screen — Status -->
+    <string name="active">Activo</string>
+    <string name="inactive">Inactivo</string>
+
+    <!-- Common -->
+    <string name="no_name">Sin nombre</string>
+    <string name="not_available">—</string>
+    <string name="sku_format">SKU: %s</string>
+    <string name="available_format">Disp: %.0f</string>
+    <string name="item_image_desc">Imagen del artículo</string>
+
+    <!-- Error messages -->
+    <string name="error_unauthorized">No autorizado. Verifique sus credenciales de API.</string>
+    <string name="error_forbidden">Acceso denegado. No tiene permisos para este recurso.</string>
+    <string name="error_not_found">Recurso no encontrado.</string>
+    <string name="error_server">Error interno del servidor. Intente más tarde.</string>
+    <string name="error_server_code">Error del servidor (código %1$d)</string>
+    <string name="error_no_internet">Sin conexión a internet. Verifique su red.</string>
+    <string name="error_timeout">Tiempo de espera agotado. Intente nuevamente.</string>
+    <string name="error_connection_failed">No se pudo conectar al servidor.</string>
+    <string name="error_connection_generic">Error de conexión: %1$s</string>
+</resources>
