@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_light"
+    tools:context=".ui.ItemDetailActivity">
+
+    <LinearLayout
+        android:id="@+id/detailContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- Back button at top -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnBack"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:text="@string/back"
+            app:icon="@drawable/ic_back"
+            app:iconGravity="start" />
+
+        <!-- Image + Info row (will be set to horizontal in landscape via code) -->
+        <LinearLayout
+            android:id="@+id/contentRow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Image Section -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/imageCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp">
+
+                <ImageView
+                    android:id="@+id/ivDetailImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="280dp"
+                    android:scaleType="centerInside"
+                    android:background="@color/image_background"
+                    android:padding="24dp"
+                    android:contentDescription="@string/item_image_desc"
+                    tools:src="@drawable/ic_placeholder" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Info Section -->
+            <LinearLayout
+                android:id="@+id/infoSection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- Item Name -->
+                <TextView
+                    android:id="@+id/tvDetailName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_primary"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="12dp"
+                    tools:text="Taladro Percutor Bosch GSB 13RE" />
+
+                <!-- Status Chip -->
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:checkable="false"
+                    tools:text="Activo" />
+
+                <!-- Info Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="1dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <!-- SKU Internal -->
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                                android:layout_weight="1" android:text="@string/sku_internal"
+                                android:textColor="@color/text_secondary" android:textSize="14sp" />
+                            <TextView android:id="@+id/tvDetailInternalSku"
+                                android:layout_width="0dp" android:layout_height="wrap_content"
+                                android:layout_weight="1" android:textColor="@color/text_primary"
+                                android:textSize="14sp" android:textStyle="bold"
+                                tools:text="SKU-00142" />
+                        </LinearLayout>
+
+                        <View android:layout_width="match_parent" android:layout_height="1dp"
+                            android:background="@color/divider" android:layout_marginVertical="8dp" />
+
+                        <!-- SKU External -->
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                                android:layout_weight="1" android:text="@string/sku_external"
+                                android:textColor="@color/text_secondary" android:textSize="14sp" />
+                            <TextView android:id="@+id/tvDetailExternalSku"
+                                android:layout_width="0dp" android:layout_height="wrap_content"
+                                android:layout_weight="1" android:textColor="@color/text_primary"
+                                android:textSize="14sp" android:textStyle="bold"
+                                tools:text="EXT-9981" />
+                        </LinearLayout>
+
+                        <View android:layout_width="match_parent" android:layout_height="1dp"
+                            android:background="@color/divider" android:layout_marginVertical="8dp" />
+
+                        <!-- Barcode -->
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                                android:layout_weight="1" android:text="@string/barcode"
+                                android:textColor="@color/text_secondary" android:textSize="14sp" />
+                            <TextView android:id="@+id/tvDetailBarcode"
+                                android:layout_width="0dp" android:layout_height="wrap_content"
+                                android:layout_weight="1" android:textColor="@color/text_primary"
+                                android:textSize="14sp" android:textStyle="bold" android:fontFamily="monospace"
+                                tools:text="7801234567890" />
+                        </LinearLayout>
+
+                        <View android:layout_width="match_parent" android:layout_height="1dp"
+                            android:background="@color/divider" android:layout_marginVertical="8dp" />
+
+                        <!-- Model -->
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                                android:layout_weight="1" android:text="@string/label_model"
+                                android:textColor="@color/text_secondary" android:textSize="14sp" />
+                            <TextView android:id="@+id/tvDetailModel"
+                                android:layout_width="0dp" android:layout_height="wrap_content"
+                                android:layout_weight="1" android:textColor="@color/text_primary"
+                                android:textSize="14sp" android:textStyle="bold"
+                                tools:text="GSB 13RE" />
+                        </LinearLayout>
+
+                        <View android:layout_width="match_parent" android:layout_height="1dp"
+                            android:background="@color/divider" android:layout_marginVertical="8dp" />
+
+                        <!-- Brand -->
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                                android:layout_weight="1" android:text="@string/label_brand"
+                                android:textColor="@color/text_secondary" android:textSize="14sp" />
+                            <TextView android:id="@+id/tvDetailBrand"
+                                android:layout_width="0dp" android:layout_height="wrap_content"
+                                android:layout_weight="1" android:textColor="@color/text_primary"
+                                android:textSize="14sp" android:textStyle="bold"
+                                tools:text="Bosch" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Properties Section -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/properties"
+                    android:textColor="@color/text_primary"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="8dp" />
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/chipGroupProperties"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp">
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipConsumable"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/consumable"
+                        android:checkable="false" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipRepairable"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/repairable"
+                        android:checkable="false" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipRestricted"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/restricted"
+                        android:checkable="false" />
+
+                </com.google.android.material.chip.ChipGroup>
+
+                <!-- Inventory Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="1dp"
+                    app:cardBackgroundColor="@color/white">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/inventory_title"
+                            android:textColor="@color/text_primary"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:layout_marginBottom="12dp" />
+
+                        <!-- Quantity row -->
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                            android:orientation="horizontal" android:layout_marginBottom="8dp">
+                            <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                                android:layout_weight="1" android:text="@string/total_quantity"
+                                android:textColor="@color/text_secondary" android:textSize="14sp" />
+                            <TextView android:id="@+id/tvDetailQuantity"
+                                android:layout_width="0dp" android:layout_height="wrap_content"
+                                android:layout_weight="1" android:textColor="@color/text_primary"
+                                android:textSize="18sp" android:textStyle="bold"
+                                tools:text="5" />
+                        </LinearLayout>
+
+                        <View android:layout_width="match_parent" android:layout_height="1dp"
+                            android:background="@color/divider" android:layout_marginBottom="8dp" />
+
+                        <!-- Available row -->
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                                android:layout_weight="1" android:text="@string/available_quantity"
+                                android:textColor="@color/text_secondary" android:textSize="14sp" />
+                            <TextView android:id="@+id/tvDetailAvailable"
+                                android:layout_width="0dp" android:layout_height="wrap_content"
+                                android:layout_weight="1" android:textColor="@color/primary"
+                                android:textSize="18sp" android:textStyle="bold"
+                                tools:text="3" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>
+
