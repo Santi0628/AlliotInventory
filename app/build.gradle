@@ -3,38 +3,37 @@ plugins {
 }
 
 android {
-    namespace 'com.alliot.inventory'
-    compileSdk 36
+    namespace = 'com.alliot.inventory'
+    compileSdk = 36
 
     defaultConfig {
-        applicationId "com.alliot.inventory"
-        minSdk 25
+        applicationId = "com.alliot.inventory"
+        minSdk = 25
         //noinspection OldTargetApi
-        targetSdk 34
-        versionCode 1
-        versionName "1.0"
+        targetSdk = 34
+        versionCode = 1
+        versionName = "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
-        // API credentials — configure in gradle.properties (see README.md)
         buildConfigField "String", "API_BASE_URL", "\"https://api.alliot.dev/\""
         buildConfigField "String", "API_KEY", project.hasProperty('API_KEY') ? "\"${project.property('API_KEY')}\"" : "\"CONFIGURE_IN_GRADLE_PROPERTIES\""
         buildConfigField "String", "API_SECRET", project.hasProperty('API_SECRET') ? "\"${project.property('API_SECRET')}\"" : "\"CONFIGURE_IN_GRADLE_PROPERTIES\""
     }
 
     buildFeatures {
-        buildConfig true
+        buildConfig = true
     }
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled = false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 }
 

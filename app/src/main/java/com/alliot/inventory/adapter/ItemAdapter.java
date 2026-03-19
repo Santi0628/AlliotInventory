@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.alliot.inventory.R;
@@ -34,8 +35,10 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
     }
 
     public void setItems(List<Item> newItems) {
-        this.items = newItems != null ? new ArrayList<>(newItems) : new ArrayList<>();
-        notifyDataSetChanged();
+        List<Item> newList = newItems != null ? new ArrayList<>(newItems) : new ArrayList<>();
+        DiffUtil.DiffResult result = DiffUtil.calculateDiff(new ItemDiffCallback(this.items, newList));
+        this.items = newList;
+        result.dispatchUpdatesTo(this);
     }
 
     @NonNull
@@ -112,6 +115,36 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
             cardView.setOnClickListener(v -> {
                 if (listener != null) listener.onItemClick(item, ivItemImage);
             });
+        }
+    }
+
+    static class ItemDiffCallback extends DiffUtil.Callback {
+        private final List<Item> oldList;
+        private final List<Item> newList;
+
+        ItemDiffCallback(List<Item> oldList, List<Item> newList) {
+            this.oldList = oldList;
+            this.newList = newList;
+        }
+
+        @Override
+        public int getOldListSize() { return oldList.size(); }
+
+        @Override
+        public int getNewListSize() { return newList.size(); }
+
+        @Override
+        public boolean areItemsTheSame(int oldPos, int newPos) {
+            return oldList.get(oldPos).getId() == newList.get(newPos).getId();
+        }
+
+        @Override
+        public boolean areContentsTheSame(int oldPos, int newPos) {
+            Item oldItem = oldList.get(oldPos);
+            Item newItem = newList.get(newPos);
+            return oldItem.getId() == newItem.getId()
+                    && oldItem.getQuantity() == newItem.getQuantity()
+                    && oldItem.isActive() == newItem.isActive();
         }
     }
 }
