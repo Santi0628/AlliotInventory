@@ -1,0 +1,17 @@
+# ============================================================
+# Alliot Inventory — Configuración de credenciales de API
+# ============================================================
+# Copie este archivo como 'gradle.properties' en la raíz del
+# proyecto y reemplace los valores con sus credenciales reales.
+#
+# IMPORTANTE: gradle.properties NO debe subirse al repositorio
+# si contiene credenciales reales.
+# ============================================================
+
+# JVM args para el daemon de Gradle
+org.gradle.jvmargs=-Xmx2048m -Dfile.encoding=UTF-8
+
+# Credenciales de la API Alliot (requeridas para compilar y ejecutar)
+API_KEY=tu_api_key_aqui
+API_SECRET=tu_api_secret_aqui
+
