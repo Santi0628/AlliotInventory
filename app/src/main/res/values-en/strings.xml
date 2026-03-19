@@ -8,6 +8,7 @@
     <!-- Main screen — Search -->
     <string name="search_hint">Search by name, SKU or code…</string>
     <string name="loading_items">Loading items…</string>
+    <string name="loading_more">Loading more…</string>
     <string name="item_count_format">Showing %1$d of %2$d items</string>
 
     <!-- Main screen — States -->

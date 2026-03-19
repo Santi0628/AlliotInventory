@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,19 +19,17 @@ import com.alliot.inventory.adapter.ItemAdapter;
 import com.alliot.inventory.model.Item;
 import com.alliot.inventory.ui.ItemDetailActivity;
 import com.alliot.inventory.viewmodel.ItemListViewModel;
-import com.google.android.material.button.MaterialButton;
 
 public class MainActivity extends AppCompatActivity {
 
     private ItemListViewModel viewModel;
     private ItemAdapter adapter;
     private RecyclerView rvItems;
-    private ProgressBar progressBar;
-    private ProgressBar progressBarMore;
+    private LinearLayout loadingLayout;
+    private View loadingMoreCard;
     private LinearLayout errorLayout;
     private TextView tvError;
-    private MaterialButton btnRetry;
-    private LinearLayout emptyLayout;
+    private View emptyLayout;
     private TextView tvItemCount;
     private SearchView searchView;
 
@@ -53,15 +50,14 @@ public class MainActivity extends AppCompatActivity {
 
     private void initViews() {
         rvItems = findViewById(R.id.rvItems);
-        progressBar = findViewById(R.id.progressBar);
-        progressBarMore = findViewById(R.id.progressBarMore);
+        loadingLayout = findViewById(R.id.loadingLayout);
+        loadingMoreCard = findViewById(R.id.loadingMoreCard);
         errorLayout = findViewById(R.id.errorLayout);
         tvError = findViewById(R.id.tvError);
-        btnRetry = findViewById(R.id.btnRetry);
         emptyLayout = findViewById(R.id.emptyLayout);
         tvItemCount = findViewById(R.id.tvItemCount);
         searchView = findViewById(R.id.searchView);
-        btnRetry.setOnClickListener(v -> viewModel.loadItems());
+        findViewById(R.id.btnRetry).setOnClickListener(v -> viewModel.loadItems());
     }
 
     private void setupRecyclerView() {
@@ -74,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         adapter = new ItemAdapter();
         rvItems.setAdapter(adapter);
 
-        adapter.setOnItemClickListener((item, sharedElement) -> navigateToDetail(item, sharedElement));
+        adapter.setOnItemClickListener(this::navigateToDetail);
 
         rvItems.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -143,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         viewModel.getIsLoading().observe(this, isLoading -> {
-            progressBar.setVisibility(isLoading ? View.VISIBLE : View.GONE);
+            loadingLayout.setVisibility(isLoading ? View.VISIBLE : View.GONE);
             if (isLoading) {
                 rvItems.setVisibility(View.GONE);
                 errorLayout.setVisibility(View.GONE);
@@ -151,9 +147,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        viewModel.getIsLoadingMore().observe(this, isLoadingMore -> {
-            progressBarMore.setVisibility(isLoadingMore ? View.VISIBLE : View.GONE);
-        });
+        viewModel.getIsLoadingMore().observe(this, isLoadingMore ->
+            loadingMoreCard.setVisibility(isLoadingMore ? View.VISIBLE : View.GONE)
+        );
 
         viewModel.getErrorMessage().observe(this, error -> {
             if (error != null && !error.isEmpty()) {
@@ -174,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         viewModel.getIsEmpty().observe(this, isEmpty -> {
-            if (isEmpty && progressBar.getVisibility() != View.VISIBLE
+            if (isEmpty && loadingLayout.getVisibility() != View.VISIBLE
                     && errorLayout.getVisibility() != View.VISIBLE) {
                 emptyLayout.setVisibility(View.VISIBLE);
                 rvItems.setVisibility(View.GONE);
