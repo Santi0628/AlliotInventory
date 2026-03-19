@@ -35,7 +35,7 @@ public class Inventory implements Parcelable {
         return 0;
     }
 
-    public static final Creator<Inventory> CREATOR = new Creator<Inventory>() {
+    public static final Creator<Inventory> CREATOR = new Creator<>() {
         @Override
         public Inventory createFromParcel(Parcel in) {
             return new Inventory(in);

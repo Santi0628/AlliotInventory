@@ -51,7 +51,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
-        holder.bind(items.get(position));
+        holder.bind(items.get(position), listener);
     }
 
     @Override
@@ -59,7 +59,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         return items.size();
     }
 
-    class ItemViewHolder extends RecyclerView.ViewHolder {
+    public static class ItemViewHolder extends RecyclerView.ViewHolder {
 
         private final CardView cardView;
         private final ImageView ivItemImage;
@@ -78,31 +78,26 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
             statusIndicator = itemView.findViewById(R.id.statusIndicator);
         }
 
-        void bind(Item item) {
+        void bind(Item item, OnItemClickListener listener) {
             android.content.Context context = itemView.getContext();
 
-            // Name
             tvItemName.setText(item.getName() != null ? item.getName()
                     : context.getString(R.string.no_name));
 
-            // SKU with label
             String sku = item.getInternalSku() != null ? item.getInternalSku()
                     : context.getString(R.string.not_available);
             tvItemSku.setText(String.format(context.getString(R.string.sku_format), sku));
 
-            // Available quantity
             double qty = item.getAvailableQuantity();
             tvAvailableQty.setText(String.format(Locale.getDefault(),
                     context.getString(R.string.available_format), qty));
 
-            // Active/inactive status
             statusIndicator.setBackgroundResource(
                     item.isActive() ? R.drawable.status_active : R.drawable.status_inactive
             );
 
-            String imageUrl = item.getMediumImageUrl();
             Glide.with(itemView.getContext())
-                    .load(imageUrl)
+                    .load(item.getMediumImageUrl())
                     .apply(new RequestOptions()
                             .placeholder(R.drawable.ic_placeholder)
                             .error(R.drawable.ic_placeholder)

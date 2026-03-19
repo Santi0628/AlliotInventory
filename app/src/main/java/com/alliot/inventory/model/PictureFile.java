@@ -70,7 +70,7 @@ public class PictureFile implements Parcelable {
     @Override
     public int describeContents() { return 0; }
 
-    public static final Creator<PictureFile> CREATOR = new Creator<PictureFile>() {
+    public static final Creator<PictureFile> CREATOR = new Creator<>() {
         @Override
         public PictureFile createFromParcel(Parcel in) { return new PictureFile(in); }
         @Override

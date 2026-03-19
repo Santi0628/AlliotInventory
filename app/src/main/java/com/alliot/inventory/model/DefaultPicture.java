@@ -29,7 +29,7 @@ public class DefaultPicture implements Parcelable {
     @Override
     public int describeContents() { return 0; }
 
-    public static final Creator<DefaultPicture> CREATOR = new Creator<DefaultPicture>() {
+    public static final Creator<DefaultPicture> CREATOR = new Creator<>() {
         @Override
         public DefaultPicture createFromParcel(Parcel in) { return new DefaultPicture(in); }
         @Override

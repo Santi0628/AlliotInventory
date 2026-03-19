@@ -35,7 +35,7 @@ public class ImageUrl implements Parcelable {
         return 0;
     }
 
-    public static final Creator<ImageUrl> CREATOR = new Creator<ImageUrl>() {
+    public static final Creator<ImageUrl> CREATOR = new Creator<>() {
         @Override
         public ImageUrl createFromParcel(Parcel in) {
             return new ImageUrl(in);

@@ -175,7 +175,7 @@ public class Item implements Parcelable {
         return 0;
     }
 
-    public static final Creator<Item> CREATOR = new Creator<Item>() {
+    public static final Creator<Item> CREATOR = new Creator<>() {
         @Override
         public Item createFromParcel(Parcel in) {
             return new Item(in);
