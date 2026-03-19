@@ -15,12 +15,20 @@ Las credenciales de la API se inyectan vía `BuildConfig`. **Nunca** se incluyen
 
 ### Opción 1 — `gradle.properties` (recomendado)
 
-Agregar al archivo `gradle.properties` en la raíz del proyecto o en `~/.gradle/gradle.properties`:
+Copiar el archivo de ejemplo y completar con credenciales reales:
+
+```bash
+cp gradle.properties.example gradle.properties
+```
+
+Luego editar `gradle.properties` y reemplazar los valores:
 
 ```properties
 API_KEY=tu_api_key_aqui
 API_SECRET=tu_api_secret_aqui
 ```
+
+> `gradle.properties` está en `.gitignore` — nunca se sube al repositorio.
 
 ### Opción 2 — Línea de comandos
 
@@ -28,7 +36,6 @@ API_SECRET=tu_api_secret_aqui
 ./gradlew assembleDebug -PAPI_KEY="tu_api_key" -PAPI_SECRET="tu_api_secret"
 ```
 
-Se incluye `gradle.properties.example` como referencia.
 
 ## Compilar y ejecutar
 
