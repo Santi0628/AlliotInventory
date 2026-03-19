@@ -11,7 +11,7 @@ import androidx.lifecycle.Observer;
 import com.alliot.inventory.model.Item;
 import com.alliot.inventory.model.ItemResponse;
 import com.alliot.inventory.repository.ItemRepository;
-import com.alliot.inventory.repository.ItemRepository.Resource;
+import com.alliot.inventory.repository.Resource;
 
 import java.util.ArrayList;
 import java.util.List;
