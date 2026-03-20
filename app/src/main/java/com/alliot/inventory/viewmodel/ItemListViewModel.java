@@ -10,15 +10,13 @@ import androidx.lifecycle.Observer;
 
 import com.alliot.inventory.model.Item;
 import com.alliot.inventory.model.ItemResponse;
+import com.alliot.inventory.network.ErrorHandler;
 import com.alliot.inventory.repository.ItemRepository;
 import com.alliot.inventory.repository.Resource;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * ViewModel for the main item list screen.
- */
 public class ItemListViewModel extends AndroidViewModel {
 
     private final ItemRepository repository;
@@ -28,6 +26,7 @@ public class ItemListViewModel extends AndroidViewModel {
     private final MutableLiveData<Boolean> isLoadingMore = new MutableLiveData<>(false);
     private final MutableLiveData<String> errorMessage = new MutableLiveData<>();
     private final MutableLiveData<Boolean> isEmpty = new MutableLiveData<>(false);
+    private final MutableLiveData<Item> selectedItem = new MutableLiveData<>();
 
     private int currentPage = 0;
     private int totalItems = 0;
@@ -40,10 +39,9 @@ public class ItemListViewModel extends AndroidViewModel {
 
     public ItemListViewModel(@NonNull Application application) {
         super(application);
-        repository = new ItemRepository(application);
+        repository = new ItemRepository();
     }
 
-    /** Resets state and starts loading from page 1. */
     public void loadItems() {
         removeCurrentObserver();
         currentPage = 0;
@@ -54,7 +52,6 @@ public class ItemListViewModel extends AndroidViewModel {
         loadNextPage();
     }
 
-    /** Loads the next page of items through the repository. */
     public void loadNextPage() {
         if (isCurrentlyLoading || isLastPage) return;
 
@@ -100,7 +97,9 @@ public class ItemListViewModel extends AndroidViewModel {
                     isCurrentlyLoading = false;
                     isLoading.setValue(false);
                     isLoadingMore.setValue(false);
-                    errorMessage.setValue(resource.getMessage());
+                    String message = ErrorHandler.toMessage(
+                            getApplication(), resource.getErrorType());
+                    errorMessage.setValue(message);
                     isEmpty.setValue(allItems.isEmpty());
                     break;
             }
@@ -142,7 +141,6 @@ public class ItemListViewModel extends AndroidViewModel {
         }
     }
 
-    /** Removes current observer to avoid duplicate callbacks. */
     private void removeCurrentObserver() {
         if (currentLiveData != null && currentObserver != null) {
             currentLiveData.removeObserver(currentObserver);
@@ -157,14 +155,17 @@ public class ItemListViewModel extends AndroidViewModel {
         removeCurrentObserver();
     }
 
-    // ========== Getters ==========
     public LiveData<List<Item>> getFilteredItems() { return filteredItems; }
     public LiveData<Boolean> getIsLoading()        { return isLoading; }
     public LiveData<Boolean> getIsLoadingMore()    { return isLoadingMore; }
     public LiveData<String> getErrorMessage()      { return errorMessage; }
     public LiveData<Boolean> getIsEmpty()          { return isEmpty; }
+    public LiveData<Item> getSelectedItem()        { return selectedItem; }
     public boolean isLastPage()                    { return isLastPage; }
     public boolean isCurrentlyLoading()            { return isCurrentlyLoading; }
+    public boolean hasActiveSearch()               { return !currentSearchQuery.isEmpty(); }
     public int getTotalItems()                     { return totalItems; }
     public int getLoadedItemCount()                { return allItems.size(); }
+
+    public void setSelectedItem(Item item) { selectedItem.setValue(item); }
 }
