@@ -4,8 +4,6 @@
 # Copie este archivo como 'gradle.properties' en la raíz del
 # proyecto y reemplace los valores con sus credenciales reales.
 #
-# IMPORTANTE: gradle.properties NO debe subirse al repositorio
-# si contiene credenciales reales.
 # ============================================================
 
 # JVM args para el daemon de Gradle
