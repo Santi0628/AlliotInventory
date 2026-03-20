@@ -10,12 +10,14 @@
     <string name="loading_items">Loading items…</string>
     <string name="loading_more">Loading more…</string>
     <string name="item_count_format">Showing %1$d of %2$d items</string>
+    <string name="item_count_filtered_format">%1$d matches (from %2$d loaded / %3$d total)</string>
 
     <!-- Main screen — States -->
     <string name="no_items_found">No items found</string>
     <string name="retry">Retry</string>
     <string name="error_icon_desc">Error</string>
     <string name="empty_icon_desc">No results</string>
+    <string name="detail_placeholder">Select an item to see its details</string>
 
     <!-- Detail screen — Navigation -->
     <string name="back">Back</string>

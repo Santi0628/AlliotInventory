@@ -10,12 +10,14 @@
     <string name="loading_items">Cargando artículos…</string>
     <string name="loading_more">Cargando más…</string>
     <string name="item_count_format">Mostrando %1$d de %2$d artículos</string>
+    <string name="item_count_filtered_format">%1$d coincidencias (de %2$d cargados / %3$d total)</string>
 
     <!-- Main screen — States -->
     <string name="no_items_found">No se encontraron artículos</string>
     <string name="retry">Reintentar</string>
     <string name="error_icon_desc">Error</string>
     <string name="empty_icon_desc">Sin resultados</string>
+    <string name="detail_placeholder">Selecciona un artículo para ver su detalle</string>
 
     <!-- Detail screen — Navigation -->
     <string name="back">Volver</string>
