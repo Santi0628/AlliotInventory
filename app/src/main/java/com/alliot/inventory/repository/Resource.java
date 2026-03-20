@@ -6,12 +6,12 @@ public class Resource<T> {
 
     private final Status status;
     private final T data;
-    private final String message;
+    private final ErrorType errorType;
 
-    private Resource(Status status, T data, String message) {
+    private Resource(Status status, T data, ErrorType errorType) {
         this.status = status;
         this.data = data;
-        this.message = message;
+        this.errorType = errorType;
     }
 
     public static <T> Resource<T> loading() {
@@ -22,12 +22,11 @@ public class Resource<T> {
         return new Resource<>(Status.SUCCESS, data, null);
     }
 
-    public static <T> Resource<T> error(String message) {
-        return new Resource<>(Status.ERROR, null, message);
+    public static <T> Resource<T> error(ErrorType errorType) {
+        return new Resource<>(Status.ERROR, null, errorType);
     }
 
-    public Status getStatus() { return status; }
-    public T getData()        { return data; }
-    public String getMessage() { return message; }
+    public Status getStatus()       { return status; }
+    public T getData()              { return data; }
+    public ErrorType getErrorType() { return errorType; }
 }
-

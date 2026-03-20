@@ -1,14 +1,11 @@
 package com.alliot.inventory.repository;
 
-import android.content.Context;
-
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.alliot.inventory.model.ItemResponse;
 import com.alliot.inventory.network.ApiService;
-import com.alliot.inventory.network.ErrorHandler;
 import com.alliot.inventory.network.RetrofitClient;
 
 import retrofit2.Call;
@@ -20,10 +17,8 @@ public class ItemRepository {
     private static final int ITEMS_PER_PAGE = 15;
 
     private final ApiService apiService;
-    private final Context context;
 
-    public ItemRepository(Context context) {
-        this.context = context.getApplicationContext();
+    public ItemRepository() {
         this.apiService = RetrofitClient.getInstance().getApiService();
     }
 
@@ -39,18 +34,17 @@ public class ItemRepository {
                     result.postValue(Resource.success(response.body()));
                 } else {
                     result.postValue(Resource.error(
-                            ErrorHandler.fromHttpCode(context, response.code())));
+                            ErrorType.fromHttpCode(response.code())));
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<ItemResponse> call, @NonNull Throwable t) {
                 result.postValue(Resource.error(
-                        ErrorHandler.fromThrowable(context, t)));
+                        ErrorType.fromThrowable(t)));
             }
         });
 
         return result;
     }
 }
-
