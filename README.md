@@ -53,9 +53,8 @@ com.alliot.inventory/
 ├── repository/   → ItemRepository con Resource wrapper (Loading/Success/Error)
 ├── viewmodel/    → ItemListViewModel (paginación + filtro + LiveData)
 ├── adapter/      → ItemAdapter (RecyclerView con Glide)
-├── ui/           → ItemDetailActivity
-├── util/         → ParcelCompat (compat API 33+)
-└── MainActivity  → Pantalla principal con grid responsivo
+├── ui/           → MainActivity, ItemDetailActivity, DetailViewHelper
+└── util/         → ParcelCompat (compat API 33+)
 ```
 
 ## Decisiones técnicas
@@ -97,5 +96,5 @@ com.alliot.inventory/
 - Paginación infinita (infinite scroll)
 - Barra de búsqueda con filtro local
 - Shared element transition entre lista y detalle
-- Unit tests para modelos
+- Unit tests (80 tests: modelos, paginación, Resource wrapper, ErrorType, fallback chains)
 - i18n español/inglés
