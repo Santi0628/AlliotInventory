@@ -23,6 +23,7 @@ android {
 
     buildFeatures {
         buildConfig = true
+        viewBinding = true
     }
 
     buildTypes {
@@ -38,7 +39,6 @@ android {
 }
 
 dependencies {
-    // AndroidX Core
     implementation libs.appcompat
     implementation libs.material
     implementation libs.activity
@@ -47,21 +47,17 @@ dependencies {
     implementation libs.recyclerview
     implementation libs.swiperefreshlayout
 
-    // Retrofit + OkHttp
     implementation libs.retrofit
     implementation libs.retrofit.converter.gson
     implementation libs.okhttp
     implementation libs.okhttp.logging
 
-    // Glide
     implementation libs.glide
     annotationProcessor libs.glide.compiler
 
-    // Lifecycle (ViewModel + LiveData)
     implementation libs.lifecycle.viewmodel
     implementation libs.lifecycle.livedata
 
-    // Testing
     testImplementation libs.junit
     androidTestImplementation libs.ext.junit
     androidTestImplementation libs.espresso.core
