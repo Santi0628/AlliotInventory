@@ -11,14 +11,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Arrays;
-import java.util.Collections;
 
 import static org.junit.Assert.*;
 
-/**
- * Unit tests for the Item model and related POJOs.
- * Validates JSON field mapping logic, fallback behavior, and edge cases.
- */
 public class ItemModelTest {
 
     private Item item;
@@ -38,8 +33,6 @@ public class ItemModelTest {
         item.setQuantity(5);
     }
 
-    // ========== Basic getters ==========
-
     @Test
     public void testBasicGetters() {
         assertEquals(1024, item.getId());
@@ -54,8 +47,6 @@ public class ItemModelTest {
         assertEquals(5, item.getQuantity());
     }
 
-    // ========== Barcode fallback ==========
-
     @Test
     public void testBarcodeReturnsBarcode_whenBarcodeIsNotNull() {
         item.setBarcode("PRIMARY_BARCODE");
@@ -67,8 +58,6 @@ public class ItemModelTest {
         Item emptyItem = new Item();
         assertNull(emptyItem.getBarcode());
     }
-
-    // ========== Inventory fallback ==========
 
     @Test
     public void testGetInventory_returnsInventory_whenNotNull() {
@@ -99,8 +88,6 @@ public class ItemModelTest {
         item.setInventory(inv);
         assertEquals(7.5, item.getAvailableQuantity(), 0.01);
     }
-
-    // ========== Image URL helpers ==========
 
     @Test
     public void testGetMediumImageUrl_returnsNull_whenNoPicture() {
@@ -138,7 +125,6 @@ public class ItemModelTest {
         dp.setFile(file);
         item.setDefaultPicture(dp);
 
-        // large is null, should fallback to medium
         assertEquals("https://cdn.example.com/medium.jpg", item.getLargeImageUrl());
     }
 
@@ -154,8 +140,6 @@ public class ItemModelTest {
 
         assertEquals("https://cdn.example.com/large.jpg", item.getLargeImageUrl());
     }
-
-    // ========== PictureFile URL fallback chain ==========
 
     @Test
     public void testPictureFileBestUrl_prefersLarge() {
@@ -186,8 +170,6 @@ public class ItemModelTest {
 
         assertEquals("large.jpg", file.getMediumUrl());
     }
-
-    // ========== ItemResponse ==========
 
     @Test
     public void testItemResponse_hasMorePages() {
@@ -231,8 +213,6 @@ public class ItemModelTest {
         assertEquals("Taladro Percutor Bosch GSB 13RE", response.getData().get(0).getName());
     }
 
-    // ========== Edge cases ==========
-
     @Test
     public void testEmptyItem_defaults() {
         Item empty = new Item();
@@ -263,4 +243,3 @@ public class ItemModelTest {
         assertEquals("Bosch", item.getBrand());
     }
 }
-
