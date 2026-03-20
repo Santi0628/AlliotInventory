@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--
+        logo.png is 822x284px (ratio ~2.89:1).
+        Item area: 108 - 18 - 18 = 72dp wide, 108 - 42 - 41 = 25dp tall
+        72 / 25 = 2.88 ≈ logo ratio → gravity="fill" scales with no distortion.
+    -->
     <item
-        android:left="24dp"
-        android:top="24dp"
-        android:right="24dp"
-        android:bottom="24dp">
+        android:left="18dp"
+        android:right="18dp"
+        android:top="42dp"
+        android:bottom="41dp">
         <bitmap
             android:src="@drawable/logo"
-            android:gravity="center" />
+            android:gravity="fill" />
     </item>
 </layer-list>
