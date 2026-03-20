@@ -2,7 +2,7 @@
 # Alliot Inventory — Configuración de credenciales de API
 # ============================================================
 # Copie este archivo como 'gradle.properties' en la raíz del
-# proyecto y reemplace los valores con sus credenciales reales.
+# proyecto y reemplace los valores con las credenciales reales.
 #
 # ============================================================
 
