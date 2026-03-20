@@ -175,8 +175,7 @@ public class MainActivity extends AppCompatActivity {
                     tvItemCount.setText(String.format(
                             getString(R.string.item_count_filtered_format),
                             items.size(),
-                            viewModel.getLoadedItemCount(),
-                            viewModel.getTotalItems()
+                            viewModel.getLoadedItemCount()
                     ));
 
                     if (items.size() < 10 && !viewModel.isLastPage()
@@ -187,7 +186,8 @@ public class MainActivity extends AppCompatActivity {
                     tvItemCount.setText(String.format(
                             getString(R.string.item_count_format),
                             viewModel.getLoadedItemCount(),
-                            viewModel.getTotalItems()
+                            viewModel.getCurrentPage(),
+                            viewModel.getTotalPages()
                     ));
                 }
             } else {

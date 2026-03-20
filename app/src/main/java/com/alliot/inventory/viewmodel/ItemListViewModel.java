@@ -29,7 +29,7 @@ public class ItemListViewModel extends AndroidViewModel {
     private final MutableLiveData<Item> selectedItem = new MutableLiveData<>();
 
     private int currentPage = 0;
-    private int totalItems = 0;
+    private int totalPages = 0;
     private boolean isLastPage = false;
     private boolean isCurrentlyLoading = false;
     private String currentSearchQuery = "";
@@ -47,7 +47,7 @@ public class ItemListViewModel extends AndroidViewModel {
         currentPage = 0;
         allItems.clear();
         isLastPage = false;
-        totalItems = 0;
+        totalPages = 0;
         isCurrentlyLoading = false;
         loadNextPage();
     }
@@ -82,7 +82,7 @@ public class ItemListViewModel extends AndroidViewModel {
                     ItemResponse body = resource.getData();
                     if (body != null) {
                         currentPage = body.getPage();
-                        totalItems = body.getTotal();
+                        totalPages = body.getTotal();
                         isLastPage = !body.hasMorePages();
 
                         if (body.getData() != null) {
@@ -164,7 +164,8 @@ public class ItemListViewModel extends AndroidViewModel {
     public boolean isLastPage()                    { return isLastPage; }
     public boolean isCurrentlyLoading()            { return isCurrentlyLoading; }
     public boolean hasActiveSearch()               { return !currentSearchQuery.isEmpty(); }
-    public int getTotalItems()                     { return totalItems; }
+    public int getTotalPages()                     { return totalPages; }
+    public int getCurrentPage()                    { return currentPage; }
     public int getLoadedItemCount()                { return allItems.size(); }
 
     public void setSelectedItem(Item item) { selectedItem.setValue(item); }

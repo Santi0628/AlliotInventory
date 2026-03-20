@@ -76,6 +76,10 @@ public class ItemResponse {
     }
 
     public boolean hasMorePages() {
-        return page * per < total;
+        return page < total;          // total = número de páginas totales
+    }
+
+    public int getEstimatedTotalItems() {
+        return total * per;           // estimado = páginas × ítems/página
     }
 }
