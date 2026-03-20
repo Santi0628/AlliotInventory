@@ -176,7 +176,7 @@ public class ItemModelTest {
         ItemResponse response = new ItemResponse();
         response.setPage(1);
         response.setPer(15);
-        response.setTotal(87);
+        response.setTotal(87);  // 87 pages remaining
 
         assertTrue(response.hasMorePages());
     }
@@ -186,7 +186,7 @@ public class ItemModelTest {
         ItemResponse response = new ItemResponse();
         response.setPage(6);
         response.setPer(15);
-        response.setTotal(87);
+        response.setTotal(6);  // page 6 is the last of 6 pages
 
         assertFalse(response.hasMorePages());
     }
@@ -196,7 +196,7 @@ public class ItemModelTest {
         ItemResponse response = new ItemResponse();
         response.setPage(2);
         response.setPer(15);
-        response.setTotal(30);
+        response.setTotal(2);  // page 2 is the last of 2 pages
 
         assertFalse(response.hasMorePages());
     }

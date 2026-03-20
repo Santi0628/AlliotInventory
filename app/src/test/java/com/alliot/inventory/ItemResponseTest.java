@@ -7,37 +7,54 @@ import java.util.Collections;
 import static org.junit.Assert.*;
 public class ItemResponseTest {
     @Test
-    public void hasMorePages_trueWhenNotOnLastPage() {
-        ItemResponse r = response(1, 15, 100);
-        assertTrue(r.hasMorePages());
+    public void hasMorePages_true_whenOnFirstOfManyPages() {
+        assertTrue(response(1, 15, 100).hasMorePages());
     }
+
     @Test
-    public void hasMorePages_falseWhenExactFit() {
-        assertFalse(response(2, 15, 30).hasMorePages());
+    public void hasMorePages_false_whenOnLastPage() {
+        assertFalse(response(100, 15, 100).hasMorePages());
     }
+
     @Test
-    public void hasMorePages_falseWhenPastLastPage() {
-        assertFalse(response(7, 15, 87).hasMorePages());
+    public void hasMorePages_false_whenPastLastPage() {
+        assertFalse(response(101, 15, 100).hasMorePages());
     }
+
     @Test
-    public void hasMorePages_trueJustBeforeLastPage() {
-        assertTrue(response(5, 15, 87).hasMorePages());
+    public void hasMorePages_true_whenOnPageBeforeLast() {
+        assertTrue(response(99, 15, 100).hasMorePages());
     }
+
     @Test
-    public void hasMorePages_falseWhenTotalIsZero() {
+    public void hasMorePages_false_whenZeroTotalPages() {
         assertFalse(response(1, 15, 0).hasMorePages());
     }
+
     @Test
-    public void hasMorePages_singleItemSinglePage() {
+    public void hasMorePages_false_whenSinglePage() {
         assertFalse(response(1, 15, 1).hasMorePages());
     }
+
     @Test
-    public void hasMorePages_totalEqualsPerPage() {
-        assertFalse(response(1, 15, 15).hasMorePages());
+    public void hasMorePages_false_whenCurrentEqualsTotal() {
+        assertFalse(response(15, 15, 15).hasMorePages());
     }
+
     @Test
-    public void hasMorePages_totalOneMoreThanPerPage() {
-        assertTrue(response(1, 15, 16).hasMorePages());
+    public void hasMorePages_true_whenTwoPagesOnFirst() {
+        assertTrue(response(1, 15, 2).hasMorePages());
+    }
+
+    @Test
+    public void getEstimatedTotalItems_returnsPagesByPer() {
+        ItemResponse r = response(1, 20, 754);
+        assertEquals(15080, r.getEstimatedTotalItems());
+    }
+
+    @Test
+    public void getEstimatedTotalItems_zeroWhenNoPages() {
+        assertEquals(0, response(1, 15, 0).getEstimatedTotalItems());
     }
     @Test
     public void count_getterSetter() {
