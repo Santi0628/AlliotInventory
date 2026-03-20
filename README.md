@@ -96,5 +96,7 @@ com.alliot.inventory/
 - Paginación infinita (infinite scroll)
 - Barra de búsqueda con filtro local
 - Shared element transition entre lista y detalle
-- Unit tests (80 tests: modelos, paginación, Resource wrapper, ErrorType, fallback chains)
+- Layout master-detail (lista + detalle en la misma pantalla en landscape)
+- Unit tests (82 tests: modelos, paginación, Resource wrapper, ErrorType, fallback chains)
+- Manejo de estado con ViewModel + LiveData (Architecture Components)
 - i18n español/inglés
