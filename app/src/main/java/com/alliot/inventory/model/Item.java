@@ -56,9 +56,7 @@ public class Item implements Parcelable {
     @SerializedName("brand")
     private String brand;
 
-    public Item() {
-    }
-
+    public Item() {}
 
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
@@ -124,12 +122,8 @@ public class Item implements Parcelable {
 
     public double getAvailableQuantity() {
         Inventory inv = getInventory();
-        if (inv != null) {
-            return inv.getAvailableQuantity();
-        }
-        return 0;
+        return inv != null ? inv.getAvailableQuantity() : 0;
     }
-
 
     protected Item(Parcel in) {
         id = in.readInt();

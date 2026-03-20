@@ -51,7 +51,6 @@ public class PictureFile implements Parcelable {
         return url;
     }
 
-    // Parcelable
     protected PictureFile(Parcel in) {
         url = in.readString();
         icon = ParcelCompat.readParcelable(in, ImageUrl.class);

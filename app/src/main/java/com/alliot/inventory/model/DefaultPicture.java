@@ -16,7 +16,6 @@ public class DefaultPicture implements Parcelable {
     public PictureFile getFile() { return file; }
     public void setFile(PictureFile file) { this.file = file; }
 
-    // Parcelable
     protected DefaultPicture(Parcel in) {
         file = ParcelCompat.readParcelable(in, PictureFile.class);
     }
